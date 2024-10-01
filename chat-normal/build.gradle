@@ -34,6 +34,23 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+    // Spring Cloud Config 의존성
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.springframework.cloud:spring-cloud-config-server'
+
+    implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.1.0")
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store'
+}
+
+ext {
+    set('springCloudVersion', "2023.0.2")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 tasks.named('test') {

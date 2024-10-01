@@ -1,9 +1,11 @@
+config:
+  type: aws-parameterstore:/config/spring/
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_URL}?serverTimezone=Asia/Seoul
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://${db_url}?serverTimezone=Asia/Seoul
+    username: ${db_username}
+    password: ${db_password}
   mvc:
     view:
       suffix: .jsp

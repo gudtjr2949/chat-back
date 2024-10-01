@@ -1,6 +1,9 @@
 config:
-  type: aws-parameterstore:/config/spring/
+  type: aws-parameterstore:/chatback/db/
+
 spring:
+  config:
+    import: ${config.type}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${db_url}?serverTimezone=Asia/Seoul

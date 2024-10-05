@@ -1,6 +1,16 @@
 config:
   type: aws-parameterstore:/chatback/db/
 
+server:
+  port: 8081
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${eureka_url}
+
 spring:
   config:
     import: ${config.type}
@@ -9,14 +19,20 @@ spring:
     url: jdbc:mysql://${db_url}?serverTimezone=Asia/Seoul
     username: ${db_username}
     password: ${db_password}
-  mvc:
-    view:
-      suffix: .jsp
-      prefix: /WEB-INF/views/
-
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         format_sql: true
+  kafka:
+    consumer:
+      bootstrap-servers: ${bootstrap_server_url}
+      group-id: dev2
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: ${bootstrap_server_url}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer

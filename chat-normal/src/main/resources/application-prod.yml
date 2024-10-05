@@ -9,6 +9,8 @@ eureka:
       defaultZone: ${eureka_url}
 
 spring:
+  application:
+    name: chat-service
   config:
     import: ${config.type}
   datasource:

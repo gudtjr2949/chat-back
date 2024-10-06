@@ -26,12 +26,12 @@ spring:
         format_sql: true
   kafka:
     consumer:
-      bootstrap-servers: ${bootstrap_server_url}
+      bootstrap-servers: 43.203.125.148:9092
       group-id: dev1
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:
-      bootstrap-servers: ${bootstrap_server_url}
+      bootstrap-servers: 43.203.125.148:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer

@@ -22,13 +22,13 @@ public class KafkaProducerConfig {
 
     private final KafkaProperties kafkaProperties;
 
-    @Value("${bootstrap_server_url}")
+    @Value("${spring.kafka.producer.bootstrap-servers}")
     private String bootstrapServerUrl;
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
         Map<String, Object> config = new HashMap<>();
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "43.203.125.148:9092");
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServerUrl);
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         return new DefaultKafkaProducerFactory<>(config);

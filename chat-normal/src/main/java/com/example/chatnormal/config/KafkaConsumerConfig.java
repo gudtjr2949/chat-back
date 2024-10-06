@@ -23,11 +23,14 @@ public class KafkaConsumerConfig {
     @Value("${spring.kafka.consumer.bootstrap-servers}")
     private String bootstrapServerUrl;
 
+    @Value("${spring.kafka.consumer.group-id}")
+    private String groupId;
+
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServerUrl); // Kafka 브로커 서버 설정
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "dev1"); // Kafka Consumer Group 의 고유한 식별자를 설정
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId); // Kafka Consumer Group 의 고유한 식별자를 설정
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);

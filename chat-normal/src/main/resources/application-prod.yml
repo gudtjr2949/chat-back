@@ -1,5 +1,5 @@
 config:
-  type: aws-parameterstore:/chatback/db/
+  type: aws-parameterstore:/chatback/parameter/
 
 eureka:
   client:

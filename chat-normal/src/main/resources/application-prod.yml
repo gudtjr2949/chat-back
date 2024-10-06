@@ -27,7 +27,7 @@ spring:
   kafka:
     consumer:
       bootstrap-servers: ${bootstrap_server_url}
-      group-id: dev2
+      group-id: dev1
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

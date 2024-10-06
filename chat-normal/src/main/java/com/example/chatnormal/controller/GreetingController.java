@@ -1,6 +1,7 @@
 package com.example.chatnormal.controller;
 
 import com.example.chatnormal.dto.ChatMessage;
+import com.example.chatnormal.kafka.KafkaProducer;
 import com.example.chatnormal.service.ChatService;
 import com.example.chatnormal.service.dto.response.ChatHistory;
 import lombok.RequiredArgsConstructor;
@@ -21,15 +22,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class GreetingController {
 
     private final ChatService chatService;
-    private final SimpMessageSendingOperations template;
+    private final KafkaProducer kafkaProducer;
 
-    @MessageMapping("/chatroom") // pub
+    @MessageMapping("/chat") // pub
     public ResponseEntity<Void> greeting(@RequestBody ChatMessage chatMessage) throws Exception {
         // 전처리를 거쳐도 됨. DB, Redis 저장 등등
         Long chatroomId = chatMessage.getId();
         chatMessage.setId(chatroomId);
         chatService.saveChat(chatMessage);
-        template.convertAndSend("/sub/chatroom/" + chatMessage.getId(), chatMessage); // sub
+        kafkaProducer.sendMassage("chat-exchange", chatMessage);
         return ResponseEntity.ok().build();
     }
 

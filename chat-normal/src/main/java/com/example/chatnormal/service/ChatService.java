@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 public class ChatService {
 
     private final ChatRepository chatRepository;
-    private final MemberRepository memberRepository;
     private final ChatRoomRepository chatRoomRepository;
     private final ChatMemberRepository chatMemberRepository;
 
@@ -37,21 +36,6 @@ public class ChatService {
                 .name(chatMessage.getName())
                 .message(chatMessage.getMessage())
                 .build());
-    }
-
-    public List<ChatRoomList> getChatRoomList(Long memberId) {
-        Member member = memberRepository.findMemberByMemberId(memberId).get();
-
-        List<ChatMember> chatMembers = chatMemberRepository.findChatMemberByMember(member);
-
-        List<ChatRoomList> chatRoomList = new ArrayList<>();
-        for (ChatMember chatMember : chatMembers) {
-            ChatRoomList chatRoom = new ChatRoomList();
-            chatRoom.setChatroom_id(chatMember.getChatRoom().getChatRoomId());
-            chatRoomList.add(chatRoom);
-        }
-
-        return chatRoomList;
     }
 
     public ChatHistory loadChatHistory(Long chatroomId) {

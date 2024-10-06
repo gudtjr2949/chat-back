@@ -3,6 +3,7 @@ package com.example.chatnormal.config;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,10 +20,13 @@ public class KafkaConsumerConfig {
 
     private final KafkaProperties kafkaProperties;
 
+    @Value("${spring.kafka.consumer.bootstrap-servers}")
+    private String bootstrapServerUrl;
+
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Kafka 브로커 서버 설정
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServerUrl); // Kafka 브로커 서버 설정
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "dev1"); // Kafka Consumer Group 의 고유한 식별자를 설정
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);

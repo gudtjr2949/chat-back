@@ -20,7 +20,7 @@ public class KafkaConsumerConfig {
 
     private final KafkaProperties kafkaProperties;
 
-    @Value("${spring.kafka.consumer.bootstrap-servers}")
+    @Value("${bootstrap_server_url}")
     private String bootstrapServerUrl;
 
     @Bean

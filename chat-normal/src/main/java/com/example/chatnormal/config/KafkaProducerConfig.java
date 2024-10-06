@@ -22,7 +22,7 @@ public class KafkaProducerConfig {
 
     private final KafkaProperties kafkaProperties;
 
-    @Value("${spring.kafka.producer.bootstrap-servers}")
+    @Value("${spring.kafka.consumer.bootstrap-servers}")
     private String bootstrapServerUrl;
 
     @Bean

@@ -23,10 +23,12 @@ public class GreetingController {
 
     private final ChatService chatService;
     private final KafkaProducer kafkaProducer;
+    private long sendChatCount = 0;
 
     @MessageMapping("/chat") // pub
     public ResponseEntity<Void> greeting(@RequestBody ChatMessage chatMessage) throws Exception {
         // 전처리를 거쳐도 됨. DB, Redis 저장 등등
+        log.info("총 요청 횟수 = {}", sendChatCount++);
         Long chatroomId = chatMessage.getId();
         chatMessage.setId(chatroomId);
         chatService.saveChat(chatMessage);

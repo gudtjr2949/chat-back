@@ -17,7 +17,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${db_url}?serverTimezone=Asia/Seoul
     username: ${db_username}
-    password: ${db_password}
+#    password: ${db_password}
   jpa:
     hibernate:
       ddl-auto: update

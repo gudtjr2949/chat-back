@@ -122,8 +122,20 @@ public class KafkaConsumer {
         }
     }
 }
+
+
+
 ```
 
 - KafkaProducer 클래스를 통해 채팅 교환 토픽의 메시지를 추가합니다.
 
 - KafkaConsumer 클래스를 통해 채팅 교환 토픽에 해당하는 메시지가 들어온다면, 해당 메시지의 채팅방 정보와 전송자, 메시지 내용을 다른 구독자들에게 전달합니다.
+
+</br>
+</br>
+
+### 기타 코드
+
+디스커버리 서버 : https://github.com/gudtjr2949/chat-eureka
+
+게이트웨이 서버 : https://github.com/gudtjr2949/chat-gateway

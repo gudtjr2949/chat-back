@@ -137,13 +137,14 @@ public class KafkaConsumer {
 
 ### 기타 코드
 
-
 </br>
 
 디스커버리 서버 : https://github.com/gudtjr2949/chat-eureka
 
 게이트웨이 서버 : https://github.com/gudtjr2949/chat-gateway
 
+</br>
+</br>
 
 ### 참고 자료
 
